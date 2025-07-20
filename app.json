@@ -1,0 +1,33 @@
+{
+  "name": "Java Developer Interview Questions",
+  "description": "Полная коллекция вопросов и ответов для собеседования на Java Developer с современным Jekyll интерфейсом",
+  "repository": "https://github.com/ntolkachev-gh/developers-interview",
+  "logo": "https://raw.githubusercontent.com/ntolkachev-gh/developers-interview/master/images/logo.png",
+  "keywords": ["java", "interview", "questions", "jekyll", "static-site"],
+  "image": "heroku/ruby",
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "env": {
+    "JEKYLL_ENV": {
+      "description": "Jekyll environment",
+      "value": "production"
+    },
+    "RACK_ENV": {
+      "description": "Rack environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [],
+  "scripts": {
+    "postdeploy": "bundle exec jekyll build"
+  }
+} 

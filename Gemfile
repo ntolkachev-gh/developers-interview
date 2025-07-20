@@ -1,7 +1,15 @@
 source "https://rubygems.org"
 
+# Ruby version for Heroku
+ruby "3.1.0"
+
 # Jekyll
 gem "jekyll", "~> 4.3.0"
+
+# Веб-сервер для Heroku
+gem "puma", "~> 5.6"
+gem "rack", "~> 2.2"
+gem "rack-contrib", "~> 2.3"
 
 # Плагины Jekyll
 group :jekyll_plugins do
@@ -16,8 +24,10 @@ end
 # Темы
 gem "minima", "~> 2.5"
 
-# GitHub Pages совместимость
-gem "github-pages", group: :jekyll_plugins
+# GitHub Pages совместимость (только для development)
+group :development do
+  gem "github-pages"
+end
 
 # Windows и JRuby не включают файлы zoneinfo, поэтому bundle gem tzinfo-data
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

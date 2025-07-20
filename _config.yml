@@ -3,8 +3,8 @@
 # Основная информация о сайте
 title: "Java Developer Interview Questions"
 description: "Полная коллекция вопросов и ответов для собеседования на позицию Java Developer"
-baseurl: "/developers-interview"
-url: "https://ntolkachev.github.io"
+baseurl: ""
+url: "https://developers-interview-questions-672beab33b49.herokuapp.com"
 
 # Автор
 author:
