@@ -9,7 +9,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
-    ffi (1.17.2)
+    ffi (1.17.2-x86_64-darwin)
     forwardable-extended (2.6.0)
     http_parser.rb (0.8.0)
     i18n (1.14.7)
@@ -75,7 +75,7 @@ GEM
     webrick (1.9.1)
 
 PLATFORMS
-  ruby
+  universal-darwin-24
 
 DEPENDENCIES
   http_parser.rb (~> 0.6.0)
@@ -95,4 +95,4 @@ RUBY VERSION
    ruby 2.6.10p210
 
 BUNDLED WITH
-   1.17.2
+   2.3.25
