@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Core - Java Developer Interview Questions</title>
+    <meta name="description" content="Вопросы и ответы по Spring Core для собеседования Java разработчика">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #007396;
+            --secondary-color: #f89820;
+            --accent-color: #ed8b00;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e9ecef;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-title i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 0;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 10px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .page-title i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .page-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Content */
+        .content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .toc h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 5px 0;
+            display: block;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .toc a:hover, .toc a.active {
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .main-content h1, .main-content h2, .main-content h3 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-content h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .main-content h2 {
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+        }
+
+        .main-content h3 {
+            font-size: 1.2rem;
+        }
+
+        .main-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .main-content ul, .main-content ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .main-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code blocks */
+        .main-content code {
+            background: var(--bg-light);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .main-content pre {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .main-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        /* Navigation */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-light);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .back-to-top {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-back-to-top {
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-back-to-top:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .site-footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .site-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .wrapper {
+                padding: 0 15px;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .page-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="wrapper">
+            <div class="site-header-content">
+                <a class="site-title" href="/">
+                    <i class="fab fa-java"></i>
+                    Java Developer Interview Questions
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="wrapper">
+        <div class="breadcrumb">
+            <a href="/">Главная</a>
+            <span class="separator">›</span>
+            <a href="/spring/">Spring Framework</a>
+            <span class="separator">›</span>
+            <span class="current">Spring Core</span>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="wrapper">
+            <h1 class="page-title">
+                <i class="fas fa-leaf"></i>
+                Spring Core
+            </h1>
+            <p class="page-description">
+                Вопросы и ответы по основам Spring Framework: IoC, DI, конфигурация, аннотации
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="wrapper">
+        <div class="content">
+            <!-- Table of Contents -->
+            <nav class="toc">
+                <h3><i class="fas fa-list"></i> Содержание</h3>
+                <ul>
+                    <li><a href="#what-is-spring">Что такое Spring Framework?</a></li>
+                    <li><a href="#ioc-container">IoC контейнер</a></li>
+                    <li><a href="#dependency-injection">Dependency Injection</a></li>
+                    <li><a href="#spring-beans">Spring Beans</a></li>
+                    <li><a href="#configuration">Конфигурация</a></li>
+                    <li><a href="#annotations">Аннотации</a></li>
+                    <li><a href="#scopes">Области видимости</a></li>
+                    <li><a href="#lifecycle">Жизненный цикл</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <h1 id="what-is-spring">Что такое Spring Framework?</h1>
+                
+                <h2>Определение</h2>
+                <p><strong>Spring Framework</strong> — это комплексный фреймворк для разработки Java-приложений, который предоставляет инфраструктурную поддержку для создания Java-приложений. Spring берет на себя инфраструктурные задачи, позволяя разработчикам сосредоточиться на бизнес-логике.</p>
+
+                <h2>Основные принципы</h2>
+                <ul>
+                    <li><strong>Inversion of Control (IoC)</strong> - Инверсия управления</li>
+                    <li><strong>Dependency Injection (DI)</strong> - Внедрение зависимостей</li>
+                    <li><strong>Aspect-Oriented Programming (AOP)</strong> - Аспектно-ориентированное программирование</li>
+                    <li><strong>Plain Old Java Object (POJO)</strong> - Поддержка обычных Java объектов</li>
+                </ul>
+
+                <h1 id="ioc-container">IoC контейнер</h1>
+                
+                <h2>Что такое IoC?</h2>
+                <p><strong>Inversion of Control (Инверсия управления)</strong> — это принцип, при котором контроль над созданием и управлением объектами передается от самих объектов внешнему контейнеру.</p>
+
+                <h2>Пример без IoC:</h2>
+                <pre><code class="language-java">public class UserService {
+    private UserRepository userRepository;
+    
+    public UserService() {
+        // Жесткая связь - создаем зависимость сами
+        this.userRepository = new UserRepositoryImpl();
+    }
+}</code></pre>
+
+                <h2>Пример с IoC:</h2>
+                <pre><code class="language-java">@Service
+public class UserService {
+    private final UserRepository userRepository;
+    
+    // Зависимость внедряется контейнером
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}</code></pre>
+
+                <h1 id="dependency-injection">Dependency Injection</h1>
+                
+                <h2>Типы внедрения зависимостей</h2>
+                
+                <h3>1. Constructor Injection (рекомендуется)</h3>
+                <pre><code class="language-java">@Service
+public class OrderService {
+    private final PaymentService paymentService;
+    private final EmailService emailService;
+    
+    public OrderService(PaymentService paymentService, 
+                       EmailService emailService) {
+        this.paymentService = paymentService;
+        this.emailService = emailService;
+    }
+}</code></pre>
+
+                <h3>2. Setter Injection</h3>
+                <pre><code class="language-java">@Service
+public class OrderService {
+    private PaymentService paymentService;
+    
+    @Autowired
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+}</code></pre>
+
+                <h3>3. Field Injection (не рекомендуется)</h3>
+                <pre><code class="language-java">@Service
+public class OrderService {
+    @Autowired
+    private PaymentService paymentService;
+}</code></pre>
+
+                <h1 id="spring-beans">Spring Beans</h1>
+                
+                <h2>Что такое Spring Bean?</h2>
+                <p><strong>Spring Bean</strong> — это объект, который создается, конфигурируется и управляется Spring IoC контейнером.</p>
+
+                <h2>Способы создания Bean</h2>
+                
+                <h3>1. Аннотации</h3>
+                <pre><code class="language-java">@Component
+public class UserService {
+    // ...
+}
+
+@Service
+public class PaymentService {
+    // ...
+}
+
+@Repository
+public class UserRepository {
+    // ...
+}
+
+@Controller
+public class UserController {
+    // ...
+}</code></pre>
+
+                <h3>2. Java Configuration</h3>
+                <pre><code class="language-java">@Configuration
+public class AppConfig {
+    
+    @Bean
+    public UserService userService() {
+        return new UserService();
+    }
+    
+    @Bean
+    public DataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://localhost/mydb");
+        return dataSource;
+    }
+}</code></pre>
+
+                <h1 id="configuration">Конфигурация</h1>
+                
+                <h2>@Configuration</h2>
+                <p>Аннотация для обозначения класса как источника определений bean'ов.</p>
+
+                <h2>@ComponentScan</h2>
+                <pre><code class="language-java">@Configuration
+@ComponentScan(basePackages = "com.example.service")
+public class AppConfig {
+    // Spring будет сканировать пакет com.example.service
+}</code></pre>
+
+                <h2>@Import</h2>
+                <pre><code class="language-java">@Configuration
+@Import({DatabaseConfig.class, WebConfig.class})
+public class AppConfig {
+    // Импорт других конфигурационных классов
+}</code></pre>
+
+                <h1 id="annotations">Основные аннотации</h1>
+                
+                <h2>@Autowired</h2>
+                <p>Автоматическое внедрение зависимостей по типу.</p>
+                <pre><code class="language-java">@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}</code></pre>
+
+                <h2>@Qualifier</h2>
+                <p>Указание конкретного bean'а при наличии нескольких кандидатов.</p>
+                <pre><code class="language-java">@Service
+public class NotificationService {
+    @Autowired
+    @Qualifier("emailSender")
+    private MessageSender messageSender;
+}</code></pre>
+
+                <h2>@Primary</h2>
+                <p>Указание приоритетного bean'а.</p>
+                <pre><code class="language-java">@Component
+@Primary
+public class EmailSender implements MessageSender {
+    // Этот bean будет выбран по умолчанию
+}</code></pre>
+
+                <h2>@Value</h2>
+                <p>Внедрение значений из properties файлов.</p>
+                <pre><code class="language-java">@Component
+public class DatabaseConfig {
+    @Value("${database.url}")
+    private String databaseUrl;
+    
+    @Value("${database.timeout:30}")
+    private int timeout; // значение по умолчанию 30
+}</code></pre>
+
+                <h1 id="scopes">Области видимости Bean'ов</h1>
+                
+                <h2>Singleton (по умолчанию)</h2>
+                <pre><code class="language-java">@Component
+@Scope("singleton") // можно не указывать
+public class UserService {
+    // Один экземпляр на весь контекст
+}</code></pre>
+
+                <h2>Prototype</h2>
+                <pre><code class="language-java">@Component
+@Scope("prototype")
+public class ShoppingCart {
+    // Новый экземпляр при каждом запросе
+}</code></pre>
+
+                <h2>Web-scopes</h2>
+                <pre><code class="language-java">@Component
+@Scope("request")
+public class RequestScopedBean {
+    // Один экземпляр на HTTP запрос
+}
+
+@Component
+@Scope("session")
+public class SessionScopedBean {
+    // Один экземпляр на HTTP сессию
+}</code></pre>
+
+                <h1 id="lifecycle">Жизненный цикл Bean'а</h1>
+                
+                <h2>Методы инициализации и уничтожения</h2>
+                <pre><code class="language-java">@Component
+public class DatabaseConnection {
+    
+    @PostConstruct
+    public void init() {
+        System.out.println("Инициализация соединения с БД");
+    }
+    
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("Закрытие соединения с БД");
+    }
+}</code></pre>
+
+                <h2>Интерфейсы жизненного цикла</h2>
+                <pre><code class="language-java">@Component
+public class MyBean implements InitializingBean, DisposableBean {
+    
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // Вызывается после установки всех свойств
+    }
+    
+    @Override
+    public void destroy() throws Exception {
+        // Вызывается перед уничтожением bean'а
+    }
+}</code></pre>
+
+                <!-- Navigation -->
+                <div class="page-nav">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        На главную
+                    </a>
+                    <a href="/java/core/" class="nav-link">
+                        Java Core
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="back-to-top">
+                    <a href="#top" class="btn-back-to-top">
+                        <i class="fas fa-arrow-up"></i>
+                        Наверх
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; 2024 Java Developer Interview Questions. Сделано с ❤️ для Java разработчиков</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Активный пункт в содержании
+        const tocLinks = document.querySelectorAll('.toc a');
+        const headings = document.querySelectorAll('h1[id], h2[id], h3[id]');
+
+        function updateActiveTocLink() {
+            let current = '';
+            
+            headings.forEach(heading => {
+                const rect = heading.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    current = '#' + heading.id;
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveTocLink);
+        updateActiveTocLink();
+    </script>
+</body>
+</html> 

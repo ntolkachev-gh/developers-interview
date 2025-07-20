@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Core - Java Developer Interview Questions</title>
+    <meta name="description" content="Вопросы и ответы по Java Core для собеседования Java разработчика">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007396;
+            --secondary-color: #f89820;
+            --accent-color: #ed8b00;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e9ecef;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-title i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .page-title i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+
+        /* Content */
+        .content {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .coming-soon {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .coming-soon h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .topics-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .topic-preview {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .topic-preview h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-preview p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .site-footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .wrapper {
+                padding: 0 15px;
+            }
+
+            .coming-soon {
+                padding: 2rem 1rem;
+            }
+
+            .topics-preview {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="wrapper">
+            <div class="site-header-content">
+                <a class="site-title" href="/">
+                    <i class="fab fa-java"></i>
+                    Java Developer Interview Questions
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="wrapper">
+            <h1 class="page-title">
+                <i class="fab fa-java"></i>
+                Java Core
+            </h1>
+            <p>Основы языка Java для собеседования</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="wrapper">
+        <div class="content">
+            <div class="coming-soon">
+                <h2>🚧 Контент в разработке</h2>
+                <p>Мы работаем над созданием подробного контента по Java Core. Скоро здесь появятся вопросы и ответы по основам Java.</p>
+                <a href="/" class="btn">
+                    <i class="fas fa-home"></i>
+                    Вернуться на главную
+                </a>
+            </div>
+
+            <div class="topics-preview">
+                <div class="topic-preview">
+                    <h3>Основы синтаксиса</h3>
+                    <p>Переменные, типы данных, операторы, условные конструкции</p>
+                </div>
+                <div class="topic-preview">
+                    <h3>Классы и объекты</h3>
+                    <p>Создание классов, конструкторы, методы, модификаторы доступа</p>
+                </div>
+                <div class="topic-preview">
+                    <h3>Наследование</h3>
+                    <p>Extends, super, переопределение методов, полиморфизм</p>
+                </div>
+                <div class="topic-preview">
+                    <h3>Исключения</h3>
+                    <p>Try-catch, checked/unchecked exceptions, создание собственных исключений</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <p>&copy; 2024 Java Developer Interview Questions. Сделано с ❤️ для Java разработчиков</p>
+        </div>
+    </footer>
+</body>
+</html> 
