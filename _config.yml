@@ -1,0 +1,220 @@
+# Конфигурация Jekyll для Java Developer Interview Questions
+
+# Основная информация о сайте
+title: "Java Developer Interview Questions"
+description: "Полная коллекция вопросов и ответов для собеседования на позицию Java Developer"
+baseurl: "/developers-interview"
+url: "https://ntolkachev.github.io"
+
+# Автор
+author:
+  name: "Java Interview Team"
+  email: "info@java-interview.com"
+
+# Настройки Jekyll
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Плагины
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-toc
+
+# Настройки kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+
+# Настройки для GitHub Pages
+remote_theme: pages-themes/minimal@v0.2.0
+
+# Исключения из сборки
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .DS_Store
+
+# Включения в сборку
+include:
+  - _pages
+
+# Коллекции
+collections:
+  java:
+    output: true
+    permalink: /:collection/:name/
+  web:
+    output: true
+    permalink: /:collection/:name/
+  database:
+    output: true
+    permalink: /:collection/:name/
+  framework:
+    output: true
+    permalink: /:collection/:name/
+  tools:
+    output: true
+    permalink: /:collection/:name/
+  kotlin:
+    output: true
+    permalink: /:collection/:name/
+  spring:
+    output: true
+    permalink: /:collection/:name/
+
+# Значения по умолчанию
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Java Interview Team"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "java"
+    values:
+      layout: "topic"
+      category: "Java Core & Fundamentals"
+  - scope:
+      path: ""
+      type: "web"
+    values:
+      layout: "topic"
+      category: "Web Development"
+  - scope:
+      path: ""
+      type: "database"
+    values:
+      layout: "topic"
+      category: "Database & Persistence"
+  - scope:
+      path: ""
+      type: "framework"
+    values:
+      layout: "topic"
+      category: "Frameworks & Technologies"
+  - scope:
+      path: ""
+      type: "tools"
+    values:
+      layout: "topic"
+      category: "Tools & Best Practices"
+  - scope:
+      path: ""
+      type: "kotlin"
+    values:
+      layout: "topic"
+      category: "Modern Languages"
+  - scope:
+      path: ""
+      type: "spring"
+    values:
+      layout: "topic"
+      category: "Spring Framework"
+
+# Настройки навигации
+navigation:
+  - title: "Главная"
+    url: "/"
+  - title: "Java Core"
+    url: "/java/"
+    subitems:
+      - title: "ООП"
+        url: "/java/oop/"
+      - title: "JVM"
+        url: "/java/jvm/"
+      - title: "Java Core"
+        url: "/java/core/"
+      - title: "Collections"
+        url: "/java/jcf/"
+      - title: "Java 8"
+        url: "/java/java8/"
+      - title: "Generics"
+        url: "/java/generics/"
+      - title: "Garbage Collection"
+        url: "/java/gc/"
+      - title: "I/O"
+        url: "/java/io/"
+      - title: "Сериализация"
+        url: "/java/serialization/"
+      - title: "Многопоточность"
+        url: "/java/concurrency/"
+  - title: "Web"
+    url: "/web/"
+    subitems:
+      - title: "HTML"
+        url: "/web/html/"
+      - title: "CSS"
+        url: "/web/css/"
+      - title: "Web Основы"
+        url: "/web/web/"
+      - title: "Servlets & JSP"
+        url: "/web/servlets/"
+  - title: "База данных"
+    url: "/database/"
+    subitems:
+      - title: "Базы данных"
+        url: "/database/db/"
+      - title: "SQL"
+        url: "/database/sql/"
+      - title: "JDBC"
+        url: "/database/jdbc/"
+  - title: "Фреймворки"
+    url: "/framework/"
+    subitems:
+      - title: "Spring"
+        url: "/spring/spring-core/"
+      - title: "Reactive"
+        url: "/framework/reactive/"
+      - title: "Kafka"
+        url: "/framework/kafka/"
+  - title: "Инструменты"
+    url: "/tools/"
+    subitems:
+      - title: "Тестирование"
+        url: "/tools/test/"
+      - title: "Логирование"
+        url: "/tools/log/"
+      - title: "UML"
+        url: "/tools/uml/"
+      - title: "XML"
+        url: "/tools/xml/"
+      - title: "Паттерны"
+        url: "/tools/patterns/"
+  - title: "Kotlin"
+    url: "/kotlin/"
+    subitems:
+      - title: "Kotlin Core"
+        url: "/kotlin/kotlin-core/"
+
+# Настройки социальных сетей
+social:
+  github: "ntolkachev/developers-interview"
+  telegram: "@DevInterviewBot"
+
+# Google Analytics (если нужно)
+# google_analytics: "UA-XXXXXXXX-X"
+
+# Настройки SEO
+lang: ru
+locale: ru_RU 
