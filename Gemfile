@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Ruby version for Heroku
-ruby "2.6.10"
+ruby "3.3.8"
 
 # Jekyll
 gem "jekyll", "~> 4.2.0"
