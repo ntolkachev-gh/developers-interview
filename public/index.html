@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Developer Interview Questions</title>
+    <meta name="description" content="Полная коллекция вопросов и ответов для собеседования на позицию Java Developer">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007396;
+            --secondary-color: #f89820;
+            --accent-color: #ed8b00;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e9ecef;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Header */
+        .site-header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-title i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero-title i {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Topics Section */
+        .topics-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .topic-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .topic-card.featured {
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        .topic-card.featured::before {
+            content: "Популярное";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .topic-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .topic-links a {
+            background: var(--bg-light);
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .topic-links a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .topic-progress {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wrapper {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="wrapper">
+            <div class="site-header-content">
+                <a class="site-title" href="/">
+                    <i class="fab fa-java"></i>
+                    Java Developer Interview Questions
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="wrapper">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <i class="fab fa-java"></i>
+                        Вопросы для собеседования на Java Developer
+                    </h1>
+                    <p class="hero-description">
+                        Полная коллекция вопросов и ответов для успешной подготовки к техническому собеседованию
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Вопросов</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Тем</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Бесплатно</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#topics" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Начать подготовку
+                        </a>
+                        <a href="https://github.com/ntolkachev-gh/developers-interview" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topics Section -->
+        <section id="topics" class="topics-section">
+            <div class="wrapper">
+                <div class="section-header">
+                    <h2>📚 Темы для изучения</h2>
+                    <p>Выберите интересующую вас тему для подготовки к собеседованию</p>
+                </div>
+
+                <div class="topics-grid">
+                    <div class="topic-card featured">
+                        <div class="topic-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <h3>Java Core & Fundamentals</h3>
+                        <p>Основы языка Java, ООП, JVM, коллекции, многопоточность</p>
+                        <div class="topic-links">
+                            <a href="/java/core/">Java Core</a>
+                            <a href="/java/oop/">ООП</a>
+                            <a href="/java/jcf/">Collections</a>
+                            <a href="/java/concurrency/">Многопоточность</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">10 тем</span>
+                        </div>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Spring Framework</h3>
+                        <p>IoC, DI, Spring Boot, аннотации, конфигурация</p>
+                        <div class="topic-links">
+                            <a href="/spring/spring-core/">Spring Core</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">1 тема</span>
+                        </div>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>HTML, CSS, HTTP, Servlets, JSP</p>
+                        <div class="topic-links">
+                            <a href="/web/html/">HTML</a>
+                            <a href="/web/css/">CSS</a>
+                            <a href="/web/servlets/">Servlets</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">4 темы</span>
+                        </div>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Database & Persistence</h3>
+                        <p>SQL, JDBC, реляционные БД, транзакции</p>
+                        <div class="topic-links">
+                            <a href="/database/sql/">SQL</a>
+                            <a href="/database/db/">Базы данных</a>
+                            <a href="/database/jdbc/">JDBC</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">3 темы</span>
+                        </div>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Tools & Best Practices</h3>
+                        <p>Тестирование, паттерны, логирование, UML</p>
+                        <div class="topic-links">
+                            <a href="/tools/test/">Тестирование</a>
+                            <a href="/tools/patterns/">Паттерны</a>
+                            <a href="/tools/log/">Логирование</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">5 тем</span>
+                        </div>
+                    </div>
+
+                    <div class="topic-card">
+                        <div class="topic-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Modern Languages</h3>
+                        <p>Kotlin, современные возможности JVM языков</p>
+                        <div class="topic-links">
+                            <a href="/kotlin/kotlin-core/">Kotlin Core</a>
+                        </div>
+                        <div class="topic-progress">
+                            <span class="progress-label">1 тема</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Java Developer Interview Questions</h4>
+                    <p>Полная коллекция вопросов и ответов для собеседования на позицию Java Developer</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="/java/">Java Core</a></li>
+                        <li><a href="/spring/">Spring Framework</a></li>
+                        <li><a href="/database/">База данных</a></li>
+                        <li><a href="/web/">Web разработка</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Связаться</h4>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/ntolkachev-gh/developers-interview" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/DevInterviewBot" target="_blank">
+                                <i class="fab fa-telegram"></i> Telegram Bot
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Java Developer Interview Questions. Сделано с ❤️ для Java разработчиков</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
